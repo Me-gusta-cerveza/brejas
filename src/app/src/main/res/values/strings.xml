@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">brejas</string>
+    <string name="litrao">Litrão (1000ml)</string>
+    <string name="classica">Tradicional (600ml)</string>
+    <string name="long_neck">Long Neck (355ml)</string>
+    <string name="safadinha">Safadinha (300ml)</string>
+    <string name="big_latao">Big Latão (550ml)</string>
+    <string name="latao">Latão (475ml)</string>
+    <string name="lata">Lata (350ml)</string>
+    <string name="piriguete">Piriguete (269ml)</string>
+    <string name="calcular">Calcular</string>
 </resources>
