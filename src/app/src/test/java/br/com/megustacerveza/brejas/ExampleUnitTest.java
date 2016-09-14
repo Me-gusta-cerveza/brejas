@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 
 import dalvik.annotation.TestTargetClass;
 
@@ -37,5 +38,17 @@ public class ExampleUnitTest {
     public void division_two_broken_floats(){
         Calculator calc = new Calculator();
         assertEquals(new BigDecimal(0.52).setScale(2, RoundingMode.HALF_EVEN), calc.pricePerVolume(new BigDecimal(1.618), new BigDecimal(3.1416)));
+    }
+
+    @Test
+    public void minor_price(){
+        ArrayList<BigDecimal> prices = new ArrayList<BigDecimal>();
+        prices.add(new BigDecimal(2.72).setScale(2, RoundingMode.HALF_EVEN));
+        prices.add(new BigDecimal(1.52).setScale(2, RoundingMode.HALF_EVEN));
+        prices.add(new BigDecimal(3.14).setScale(2, RoundingMode.HALF_EVEN));
+        prices.add(new BigDecimal(0.52).setScale(2, RoundingMode.HALF_EVEN));
+        prices.add(new BigDecimal(6.66).setScale(2, RoundingMode.HALF_EVEN));
+        Calculator calc = new Calculator();
+        assertEquals(3, calc.getBestPrice(prices));
     }
 }
