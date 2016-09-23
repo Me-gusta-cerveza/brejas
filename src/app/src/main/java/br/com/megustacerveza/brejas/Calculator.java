@@ -14,15 +14,15 @@ public class Calculator {
         return volume.divide(price, MathContext.DECIMAL128).setScale(2, RoundingMode.HALF_EVEN);
     }
 
-    public int getBestPrice(ArrayList<Breja> prices){
+    public Breja getBestPrice(ArrayList<Breja> brejas){
 
-        int minIndex = 0;
+        Breja theBest = new Breja("", new BigDecimal(99999), new BigDecimal(1), new BigDecimal(1));
 
-        for(int i =0; i < prices.size() ; i++){
-            if (prices.get(i).getPricePerVol().compareTo(prices.get(minIndex).getPricePerVol())<0){
-                minIndex = i;
+        for(Breja breja : brejas){
+            if (theBest.getPricePerVolume().compareTo(breja.getPricePerVolume())<0){
+                theBest = breja;
             }
         }
-        return minIndex;
+        return theBest;
     }
 }

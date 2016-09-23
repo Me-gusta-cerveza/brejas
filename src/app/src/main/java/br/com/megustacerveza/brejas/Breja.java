@@ -7,21 +7,30 @@ import java.math.BigDecimal;
  */
 public class Breja {
     String name;
+    BigDecimal volume;
+    BigDecimal price;
+    BigDecimal pricePerVolume;
 
-    public BigDecimal getVol() {
-        return vol;
+    public BigDecimal getVolume() {
+        return volume;
     }
 
-    public Breja(String name, BigDecimal vol, BigDecimal price) {
+    public Breja(String name, BigDecimal volume, BigDecimal price) {
         this.name = name;
         this.price = price;
-        this.vol = vol;
-        this.pricePerVol = pricePerVol;
+        this.volume = volume;
     }
 
-    public void setVol(BigDecimal vol) {
+    public Breja(String name, BigDecimal volume, BigDecimal price, BigDecimal pricePerVolume) {
+        this.name = name;
+        this.price = price;
+        this.volume = volume;
+        this.pricePerVolume = pricePerVolume;
+    }
 
-        this.vol = vol;
+    public void setVolume(BigDecimal volume) {
+
+        this.volume = volume;
     }
 
     public String getName() {
@@ -40,15 +49,13 @@ public class Breja {
         this.price = price;
     }
 
-    public BigDecimal getPricePerVol() {
-        return pricePerVol;
+    public BigDecimal getPricePerVolume() {
+        return pricePerVolume;
     }
 
-    public void setPricePerVol(BigDecimal pricePerVol) {
-        this.pricePerVol = pricePerVol;
+    public void setPricePerVolume(BigDecimal pricePerVolume) {
+        this.pricePerVolume = pricePerVolume;
     }
 
-    BigDecimal vol;
-    BigDecimal price;
-    BigDecimal pricePerVol;
+
 }

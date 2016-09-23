@@ -1,7 +1,5 @@
 package br.com.megustacerveza.brejas;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText lata;
     private EditText safadinha;
     private EditText piriguete;
-    private EditText otherVol;
+    private EditText otherVolume;
     private EditText otherPrice;
     private Calculator calc;
 
@@ -29,20 +27,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        litrao = (EditText) findViewById(R.id.litrao);
-        tradicional = (EditText) findViewById(R.id.tradicional);
-        bigLatao = (EditText) findViewById(R.id.bigLatao);
-        latao = (EditText) findViewById(R.id.latao);
-        longNeck = (EditText) findViewById(R.id.longNeck);
-        lata = (EditText) findViewById(R.id.lata);
-        safadinha = (EditText) findViewById(R.id.safadinha);
-        piriguete = (EditText) findViewById(R.id.piriguete);
-        otherVol = (EditText) findViewById(R.id.otherVol);
-        otherPrice = (EditText) findViewById(R.id.otherPrice);
-
         calc = new Calculator();
 
         setContentView(R.layout.activity_main);
+        initializeFields();
     }
 
     public void evaluate(View view) {
@@ -51,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
         calculatePricePerVol(brejas);
 
-        int menorPrice = calc.getBestPrice(brejas);
+        Breja menorPrice = calc.getBestPrice(brejas);
 
         new AlertDialog.Builder(this)
                 .setTitle("posicao do menor preço")
-                .setMessage(""+menorPrice)
+                .setMessage(""+menorPrice.getName())
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
@@ -63,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private void calculatePricePerVol(ArrayList<Breja> brejas) {
 
         for(Breja breja : brejas) {
-            breja.setPricePerVol(calc.pricePerVolume(breja.getVol(), breja.getPrice()));
+            breja.setPricePerVolume(calc.pricePerVolume(breja.getVolume(), breja.getPrice()));
         }
     }
 
@@ -127,14 +115,31 @@ public class MainActivity extends AppCompatActivity {
             brejas.add(piriguete);
         }
 
-        if((!otherVol.getText().toString().isEmpty()) && (!otherPrice.getText().toString().isEmpty())) {
-            BigDecimal valueOtherVol = new BigDecimal(otherVol.getText().toString());
+        if((!otherVolume.getText().toString().isEmpty())
+                && (otherVolume.getText().toString()!="")
+                && (!otherPrice.getText().toString().isEmpty())
+                && (otherPrice.getText().toString()!="")
+                ) {
+            BigDecimal valueOtherVolume = new BigDecimal(otherVolume.getText().toString());
             BigDecimal valueOtherPrice = new BigDecimal(otherPrice.getText().toString());
 
-            Breja other = new Breja("other", valueOtherVol, valueOtherPrice);
+            Breja other = new Breja("other", valueOtherVolume, valueOtherPrice);
             brejas.add(other);
         }
 
         return brejas;
+    }
+
+    private void initializeFields(){
+        litrao = (EditText) findViewById(R.id.litrao);
+        tradicional = (EditText) findViewById(R.id.tradicional);
+        bigLatao = (EditText) findViewById(R.id.bigLatao);
+        latao = (EditText) findViewById(R.id.latao);
+        longNeck = (EditText) findViewById(R.id.longNeck);
+        lata = (EditText) findViewById(R.id.lata);
+        safadinha = (EditText) findViewById(R.id.safadinha);
+        piriguete = (EditText) findViewById(R.id.piriguete);
+        otherVolume = (EditText) findViewById(R.id.otherVol);
+        otherPrice = (EditText) findViewById(R.id.otherPrice);
     }
 }
