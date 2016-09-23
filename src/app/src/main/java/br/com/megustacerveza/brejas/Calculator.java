@@ -14,12 +14,12 @@ public class Calculator {
         return volume.divide(price, MathContext.DECIMAL128).setScale(2, RoundingMode.HALF_EVEN);
     }
 
-    public int getBestPrice(ArrayList<BigDecimal> prices){
+    public int getBestPrice(ArrayList<Breja> prices){
 
         int minIndex = 0;
 
         for(int i =0; i < prices.size() ; i++){
-            if (prices.get(i).compareTo(prices.get(minIndex))<0){
+            if (prices.get(i).getPricePerVol().compareTo(prices.get(minIndex).getPricePerVol())<0){
                 minIndex = i;
             }
         }
