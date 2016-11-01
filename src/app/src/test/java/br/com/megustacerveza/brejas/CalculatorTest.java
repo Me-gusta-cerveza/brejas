@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
  */
-public class ExampleUnitTest {
+public class CalculatorTest {
 
     @Test
     public void division_by_one(){
@@ -49,6 +49,7 @@ public class ExampleUnitTest {
         prices.add(new BigDecimal(0.52).setScale(2, RoundingMode.HALF_EVEN));
         prices.add(new BigDecimal(6.66).setScale(2, RoundingMode.HALF_EVEN));
         Calculator calc = new Calculator();
-        assertEquals(3, calc.getBestPrice(prices));
+        Breja theBest = calc.getBestPrice(prices);
+        assertEquals(3, theBest.getPricePerVol());
     }
 }
