@@ -39,3 +39,4 @@ src/.idea
 .idea
 # Keystore files
 *.jks
+.idea
